@@ -32,7 +32,7 @@ namespace MysteryOfAtonClient.Menu
         {
             if (_isActive) return;
             _menuBG = _content.Load<Texture2D>("MenuBackground");
-            _menuFont = _content.Load<SpriteFont>("MenuFont.spritefont");
+            _menuFont = _content.Load<SpriteFont>("MenuFont");
             LoadMenuItems();
             loginTextbox.InitializeLoginbox();
             _isActive = true;

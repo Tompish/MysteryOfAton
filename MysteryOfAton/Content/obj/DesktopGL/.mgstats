@@ -1,4 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/GameCode/MysteryOfAton/MysteryOfAton/Content/hindring_paletted.png","C:/GameCode/MysteryOfAton/MysteryOfAton/Content/bin/DesktopGL/hindring_paletted.xnb","TextureProcessor","Texture2DContent",75141,1628085,0,5794747
-"C:/GameCode/MysteryOfAton/MysteryOfAton/Content/MenuBackground.png","C:/GameCode/MysteryOfAton/MysteryOfAton/Content/bin/DesktopGL/MenuBackground.xnb","TextureProcessor","Texture2DContent",170946,698685,0,0426078
-"C:/GameCode/MysteryOfAton/MysteryOfAton/Content/MenuFont.spritefont","C:/GameCode/MysteryOfAton/MysteryOfAton/Content/bin/DesktopGL/MenuFont.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21538,0,418951
+"C:/GameCode/MysteryOfAton/MysteryOfAton/Content/MenuFont.spritefont","C:/GameCode/MysteryOfAton/MysteryOfAton/Content/bin/DesktopGL/MenuFont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21538,0,3535225

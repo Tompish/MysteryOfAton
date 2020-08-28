@@ -4,13 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/GameCode/MysteryOfAton/MysteryOfAton/Content/MenuFont.spritefont</File>
     <File>C:/GameCode/MysteryOfAton/MysteryOfAton/Content/hindring_paletted.png</File>
     <File>C:/GameCode/MysteryOfAton/MysteryOfAton/Content/MenuBackground.png</File>
-    <File>C:/GameCode/MysteryOfAton/MysteryOfAton/Content/MenuFont.spritefont</File>
+    <File>C:/GameCode/MysteryOfAton/MysteryOfAton/Content/Textbox.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -38,8 +38,8 @@ namespace MysteryOfAtonClient.Textboxes
                 , Convert.ToInt32(xCoord * 0.9)
                 , Convert.ToInt32(yCoord * 0.15)));
 
-            passwordBox.InitializeTextbox("Textbox", "MenuFont.spritefont");
-            userNameBox.InitializeTextbox("Textbox", "MenuFont.spritefont");
+            passwordBox.InitializeTextbox("Textbox", "MenuFont");
+            userNameBox.InitializeTextbox("Textbox", "MenuFont");
             
         }
 
