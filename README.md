@@ -1,2 +1,2 @@
 # MysteryOfAton
-RPG game made in unity
+RPG game made in Monogame
