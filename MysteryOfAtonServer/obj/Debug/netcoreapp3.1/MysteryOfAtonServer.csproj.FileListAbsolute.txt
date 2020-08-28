@@ -1,0 +1,15 @@
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\bin\Debug\netcoreapp3.1\MysteryOfAtonServer.exe
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.AssemblyInfoInputs.cache
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.AssemblyInfo.cs
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\bin\Debug\netcoreapp3.1\MysteryOfAtonServer.deps.json
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\bin\Debug\netcoreapp3.1\MysteryOfAtonServer.runtimeconfig.json
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\bin\Debug\netcoreapp3.1\MysteryOfAtonServer.runtimeconfig.dev.json
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\bin\Debug\netcoreapp3.1\MysteryOfAtonServer.dll
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\bin\Debug\netcoreapp3.1\MysteryOfAtonServer.pdb
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\bin\Debug\netcoreapp3.1\Lidgren.Network.dll
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.csprojAssemblyReference.cache
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.csproj.CoreCompileInputs.cache
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.csproj.CopyComplete
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.dll
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.pdb
+C:\GameCode\MysteryOfAton\MysteryOfAtonServer\obj\Debug\netcoreapp3.1\MysteryOfAtonServer.genruntimeconfig.cache
