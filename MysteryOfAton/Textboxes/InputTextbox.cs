@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace MysteryOfAtonClient.Textboxes
@@ -65,7 +66,7 @@ namespace MysteryOfAtonClient.Textboxes
             {
                 case Microsoft.Xna.Framework.Input.Keys.Back:
                     if (displayText.Length > 0)
-                        displayText = displayText.Substring(0, displayText.Length - 1);
+                        displayText.Length--;//displayText.Remove(displayText.Length-1, displayText.Length); //.Substring(0, displayText.Length - 1);
                     return;
 
                 case Microsoft.Xna.Framework.Input.Keys.Escape:
@@ -76,7 +77,7 @@ namespace MysteryOfAtonClient.Textboxes
             //If normal character and there is room, add character
             if (_spriteFont.MeasureString(displayText).X + (textLocation.X - destinationRect.Left) * 2 < destinationRect.Width)
             {
-                displayText += charPressed;
+                displayText.Append(charPressed);
                 int pointerPosX = Convert.ToInt32(_spriteFont.MeasureString(displayText).X + textLocation.X);
                 int pointerPosY = destinationRect.Y + destinationRect.Height/2;
             }

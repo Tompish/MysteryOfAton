@@ -63,7 +63,7 @@ namespace MysteryOfAtonClient
                 {
                     case MenuChoice.connect:
                     {
-                        _networking.initiateClientNetwork(_menu.loginTextbox.userName, _menu.loginTextbox.userPassword);
+                        _networking.initiateClientNetwork(_menu.loginTextbox.userName.ToString(), _menu.loginTextbox.userPassword.ToString());
                         break;
                     }
                     case MenuChoice.quit:

@@ -14,8 +14,8 @@ namespace MysteryOfAtonClient.Textboxes
         private InputTextbox userNameBox;
         private GameWindow _window;
 
-        public string userPassword { get { return passwordBox.displayText; } }
-        public string userName { get { return userNameBox.displayText; } }
+        public StringBuilder userPassword { get { return passwordBox.displayText; } }
+        public StringBuilder userName { get { return userNameBox.displayText; } }
         public LoginTextbox(ContentManager content, GameWindow window)
         {
             _window = window;

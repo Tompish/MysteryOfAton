@@ -17,12 +17,14 @@ namespace MysteryOfAtonClient.Textboxes
         private ContentManager _content;
         protected Texture2D _boxTexture;
 
-        public string displayText = "";
+        public StringBuilder displayText;
         public SpriteFont _spriteFont;
        
         public Textbox(ContentManager content)
         {
             _content = content;
+
+            displayText = new StringBuilder("", 50);
         }
 
         
@@ -54,7 +56,7 @@ namespace MysteryOfAtonClient.Textboxes
         /// </summary>
         public void StructureText()
         {
-            var words = displayText.Split(' ', '\n');
+            var words = displayText.ToString().Split(' ', '\n');
 
             string structuredText = "";
 
