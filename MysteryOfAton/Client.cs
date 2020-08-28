@@ -83,21 +83,32 @@ namespace MysteryOfAtonClient
 
         protected override void Draw(GameTime gameTime)
         {
-            
+            GraphicsDevice.SetRenderTarget(_renderTarget);
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            GraphicsDevice.SetRenderTarget(_renderTarget);
-
+            //Draw everything on the rendertarget
             _spriteBatch.Begin();
 
             _menu.Draw(_spriteBatch);
+            
 
             _spriteBatch.End();
 
+            //Clear the rendertarget so everything eventually gets drawn on the screen.
             GraphicsDevice.SetRenderTarget(null);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(_renderTarget, Vector2.Zero, null, Color.White);
+
+            _spriteBatch.End();
+
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+
+            
         }
     }
 }
