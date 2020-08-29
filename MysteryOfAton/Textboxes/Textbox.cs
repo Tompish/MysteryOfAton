@@ -10,44 +10,22 @@ namespace MysteryOfAtonClient.Textboxes
 {
     class Textbox
     {
-        protected Rectangle _sourceRect;
-        public Rectangle destinationRect { get { return _destinationRect; } }
         private Rectangle _destinationRect;
-        public Vector2 textLocation;
-        private ContentManager _content;
+
+        protected Rectangle _sourceRect;
         protected Texture2D _boxTexture;
 
+        public Vector2 textLocation;
+        public Rectangle destinationRect { get { return _destinationRect; } }
         public StringBuilder displayText;
         public SpriteFont _spriteFont;
        
-        public Textbox(ContentManager content)
+        public Textbox(Texture2D texture, SpriteFont spriteFont)
         {
-            _content = content;
-
+            _boxTexture = texture;
+            _spriteFont = spriteFont;
             displayText = new StringBuilder("", 50);
-        }
-
-        
-        /// <summary>
-        /// Loads textures and spritefonts and sets destination rectangle
-        /// and text position to default values
-        /// </summary>
-        /// <param name="textureName">Name of the texture-file to use as background</param>
-        /// <param name="fontName">Name of the spritefont-file</param>
-        protected void LoadTextboxProperties(string textureName, string fontName)
-        {
-            _boxTexture = _content.Load<Texture2D>(textureName);
-            _spriteFont = _content.Load<SpriteFont>(fontName);
-
             _sourceRect = _boxTexture.Bounds;
-
-            _destinationRect = _destinationRect.IsEmpty ? _sourceRect : _destinationRect;
-
-            if (textLocation.Length() == 0)
-            {
-                CalculateTextPosition();
-            }
-
         }
 
         /// <summary>
@@ -97,7 +75,7 @@ namespace MysteryOfAtonClient.Textboxes
         public void SetDestinationRectangle(Rectangle dRect)
         {
             _destinationRect = dRect;
-            if(textLocation.Length() == 0)
+            if(textLocation == Vector2.Zero)
             {
                 CalculateTextPosition();
             }

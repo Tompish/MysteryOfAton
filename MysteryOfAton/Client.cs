@@ -24,7 +24,7 @@ namespace MysteryOfAtonClient
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             _networking = new Networking();
-            _menu = new Menu.Menu(Content, Window);
+            
         }
 
         protected override void Initialize()
@@ -50,7 +50,8 @@ namespace MysteryOfAtonClient
         {
             
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+
+            _menu = new Menu.Menu(Content, Window);
             _menu.LoadMenu();
 
         }

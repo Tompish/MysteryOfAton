@@ -16,20 +16,10 @@ namespace MysteryOfAtonClient.Textboxes
 
         public bool isActive { get { return _isActive; } }
 
-        public InputTextbox(ContentManager content, GameWindow window) : base(content)
+        public InputTextbox(GameWindow window, Texture2D texture, SpriteFont spriteFont) : base(texture, spriteFont)
         {
             _window = window;
             _isActive = false;
-        }
-
-        /// <summary>
-        /// Initialization is mandatory, or else spritefonts and textures wont load.
-        /// </summary>
-        /// <param name="TextureFileName"></param>
-        /// <param name="FontFileName"></param>
-        public void InitializeTextbox(string TextureFileName, string FontFileName)
-        {
-            base.LoadTextboxProperties(TextureFileName, FontFileName);
         }
 
         /// <summary>

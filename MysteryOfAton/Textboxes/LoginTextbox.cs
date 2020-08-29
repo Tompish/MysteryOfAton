@@ -12,13 +12,16 @@ namespace MysteryOfAtonClient.Textboxes
     {
         private InputTextbox passwordBox;
         private InputTextbox userNameBox;
+        private SpriteFont _spriteFont;
 
         public StringBuilder userPassword { get { return passwordBox.displayText; } }
         public StringBuilder userName { get { return userNameBox.displayText; } }
         public LoginTextbox(ContentManager content, GameWindow window)
         {
-            passwordBox = new InputTextbox(content, window);
-            userNameBox = new InputTextbox(content, window);
+            var texture = content.Load<Texture2D>("Textbox");
+            _spriteFont = content.Load<SpriteFont>("MenuFont");
+            passwordBox = new InputTextbox(window, texture, _spriteFont);
+            userNameBox = new InputTextbox(window, texture, _spriteFont);
         }
 
         public void InitializeLoginbox()
@@ -35,9 +38,6 @@ namespace MysteryOfAtonClient.Textboxes
                 , Convert.ToInt32(yCoord)
                 , Convert.ToInt32(xCoord)
                 , Convert.ToInt32(yCoord * 0.15)));
-
-            passwordBox.InitializeTextbox("Textbox", "MenuFont");
-            userNameBox.InitializeTextbox("Textbox", "MenuFont");
             
         }
 
@@ -49,6 +49,9 @@ namespace MysteryOfAtonClient.Textboxes
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            var user = "User Name";
+            var pw = "Password";
+            spriteBatch.DrawString(_spriteFont, user, new Vector2(Client.width *(float) 0.2-_spriteFont.MeasureString(user).X, Client.height*(float)0.33+ userNameBox.destinationRect.Height/3), Color.Yellow);
             userNameBox.Draw(spriteBatch);
             passwordBox.Draw(spriteBatch);
         }
