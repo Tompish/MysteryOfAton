@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MysteryOfAtonClient.Menu;
+using System.Diagnostics;
 
 namespace MysteryOfAtonClient
 {
@@ -12,6 +13,10 @@ namespace MysteryOfAtonClient
         private Menu.Menu _menu;
         private Networking _networking;
         private RenderTarget2D _renderTarget;
+
+        public ResolutionHandler rHandler;
+        public const int width = 1920;
+        public const int height = 1080;
 
         public Client()
         {
@@ -24,17 +29,19 @@ namespace MysteryOfAtonClient
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = width-400;
+            _graphics.PreferredBackBufferHeight = height-400;
             _graphics.ApplyChanges();
             _renderTarget = new RenderTarget2D(_graphics.GraphicsDevice
-                , _graphics.PreferredBackBufferWidth
-                , _graphics.PreferredBackBufferHeight
+                , width
+                , height
                 , false
                 , SurfaceFormat.Color
                 , DepthFormat.None
                 , GraphicsDevice.PresentationParameters.MultiSampleCount
                 , RenderTargetUsage.DiscardContents);
+
+            rHandler = new ResolutionHandler(Window.ClientBounds);
 
             base.Initialize();
         }
@@ -46,20 +53,17 @@ namespace MysteryOfAtonClient
             
             _menu.LoadMenu();
 
-            // TODO: use this.Content to load your game content here
         }
 
         protected override void Update(GameTime gameTime)
         {
-            var mouse = Mouse.GetState(this.Window);
             var keyboard = Keyboard.GetState();
-            if (/*GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||*/ keyboard.IsKeyDown(Keys.Escape))
+            if (keyboard.IsKeyDown(Keys.Escape))
                 _menu.LoadMenu();
-                //Exit();
 
             if(_menu.isActive)
             {
-                switch(_menu.Update(mouse))
+                switch(_menu.Update(rHandler.transformedMouseState()))
                 {
                     case MenuChoice.connect:
                     {
@@ -96,19 +100,19 @@ namespace MysteryOfAtonClient
 
             //Clear the rendertarget so everything eventually gets drawn on the screen.
             GraphicsDevice.SetRenderTarget(null);
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
-
-            _spriteBatch.Draw(_renderTarget, Vector2.Zero, null, Color.White);
+            
+            _spriteBatch.Draw(_renderTarget, rHandler.renderRectangle, Color.White);
 
             _spriteBatch.End();
-
+            
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
 
-            
         }
     }
 }

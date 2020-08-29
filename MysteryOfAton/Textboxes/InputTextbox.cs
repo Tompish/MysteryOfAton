@@ -37,14 +37,14 @@ namespace MysteryOfAtonClient.Textboxes
         /// If yes, then all text inputs will be added to a string
         /// </summary>
         /// <param name="mouse"></param>
-        public virtual void CheckTextboxState(MouseState mouse)
+        public virtual void CheckTextboxState(TMouseState mouse)
         {
-            if(base.destinationRect.Contains(mouse.Position) && mouse.LeftButton == ButtonState.Pressed && !_isActive)
+            if(base.destinationRect.Contains(mouse.TMousePosition) && mouse.OriginalMouseState.LeftButton == ButtonState.Pressed && !_isActive)
             {
                 _isActive = true;
                 beginTypeEvent();
             }
-            else if(!base.destinationRect.Contains(mouse.Position) && mouse.LeftButton == ButtonState.Pressed && _isActive)
+            else if(!base.destinationRect.Contains(mouse.TMousePosition) && mouse.OriginalMouseState.LeftButton == ButtonState.Pressed && _isActive)
             {
                 _isActive = false;
                 closeTypeEvent();
@@ -66,7 +66,7 @@ namespace MysteryOfAtonClient.Textboxes
             {
                 case Microsoft.Xna.Framework.Input.Keys.Back:
                     if (displayText.Length > 0)
-                        displayText.Length--;//displayText.Remove(displayText.Length-1, displayText.Length); //.Substring(0, displayText.Length - 1);
+                        displayText.Length--;
                     return;
 
                 case Microsoft.Xna.Framework.Input.Keys.Escape:

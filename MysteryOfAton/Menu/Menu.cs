@@ -10,6 +10,13 @@ using System.Text;
 
 namespace MysteryOfAtonClient.Menu
 {
+    struct MenuItem
+    {
+        public string text;
+        public Rectangle activeArea;
+        public Color color { get; set; }
+        public MenuChoice menuChoice { get; set; }
+    }
     class Menu
     {
         private ContentManager _content;
@@ -41,17 +48,17 @@ namespace MysteryOfAtonClient.Menu
         private void LoadMenuItems()
         {
             _menuItem = new MenuItem[2];
-
+            
             var quitDimensions = _menuFont.MeasureString("Quit");
             var connectDimensions = _menuFont.MeasureString("Connect");
 
-            var quitRect = new Rectangle((int)(_window.ClientBounds.Width - quitDimensions.X) / 2
-                , (_window.ClientBounds.Height / 2 + 30)
+            var quitRect = new Rectangle((int)(Client.width - quitDimensions.X) / 2
+                , (Client.height / 2 + 50)
                 , (int)quitDimensions.X + 10
                 , (int)quitDimensions.Y + 10);
 
-            var connectRect = new Rectangle((int)(_window.ClientBounds.Width - connectDimensions.X) / 2
-                , (_window.ClientBounds.Height / 2)
+            var connectRect = new Rectangle((int)(Client.width - connectDimensions.X) / 2
+                , (Client.height / 2)
                 , (int)connectDimensions.X + 10
                 , (int)connectDimensions.Y + 10);
 
@@ -74,7 +81,7 @@ namespace MysteryOfAtonClient.Menu
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(_menuBG, new Rectangle(0, 0, 800, 480), Color.White);
+            spriteBatch.Draw(_menuBG, new Rectangle(0, 0, Client.width, Client.height), Color.White);
             loginTextbox.Draw(spriteBatch);
             
 
@@ -84,16 +91,18 @@ namespace MysteryOfAtonClient.Menu
             }
         }
 
-        public MenuChoice Update(MouseState mouse)
+        public MenuChoice Update(TMouseState mouse)
         {
+            Debug.WriteLine(mouse.TMousePosition.ToString());
+            
             for (var i = 0; i < _menuItem.Length; i++)
             {
-                if (_menuItem[i].activeArea.Contains(mouse.Position))
+                if (_menuItem[i].activeArea.Contains(mouse.TMousePosition))
                 {
                     Mouse.SetCursor(MouseCursor.Hand);
                     _menuItem[i].color = Color.Yellow;
 
-                    if(mouse.LeftButton == ButtonState.Pressed)
+                    if(mouse.OriginalMouseState.LeftButton == ButtonState.Pressed)
                     {
                         return _menuItem[i].menuChoice;
                     }
@@ -112,13 +121,5 @@ namespace MysteryOfAtonClient.Menu
             return MenuChoice.idle;
             
         }
-    }
-
-    struct MenuItem
-    {
-        public string text;
-        public Rectangle activeArea;
-        public Color color { get; set; }
-        public MenuChoice menuChoice { get; set; }
     }
 }
