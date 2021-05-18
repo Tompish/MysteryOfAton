@@ -32,6 +32,7 @@ namespace MysteryOfAtonClient
             _graphics.PreferredBackBufferWidth = width-400;
             _graphics.PreferredBackBufferHeight = height-400;
             _graphics.ApplyChanges();
+
             _renderTarget = new RenderTarget2D(_graphics.GraphicsDevice
                 , width
                 , height
