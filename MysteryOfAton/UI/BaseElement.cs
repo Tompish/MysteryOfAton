@@ -15,14 +15,18 @@ namespace MysteryOfAtonClient.UI
         protected bool _isDragable;
         protected Texture2D _texture ;
         protected bool _focused;
+        //if UI item is an animation
         protected bool _hasActiveTexture { get { return _hasActiveTexture; } set { _hasActiveTexture = value; SetSourceRectangle(); } }
-        protected Vector2 position;
-        protected Vector2 size;
         public Rectangle? internalRect = null;
         protected Rectangle _destinationRect => new Rectangle((int)position.X, (int)position.Y, (int)size.X, (int)size.Y);
+        //Set vertical or horizontal stacking. Both cannot be true;
+        protected bool _hStack { get { return _hStack; } set { _hStack = value; _vStack = !value; organizeChildren(); } }
+        protected bool _vStack { get { return _vStack;  } set { _vStack = value; _hStack = !value; organizeChildren(); } }
 
         public List<BaseElement> children = new List<BaseElement>();
         public Rectangle _sourceRect { get; private set; }
+        public Vector2 position;
+        public Vector2 size;
 
         public BaseElement() {}
         public BaseElement(Texture2D texture)
@@ -81,5 +85,59 @@ namespace MysteryOfAtonClient.UI
 
             position = Mouse.GetState().Position.ToVector2();
         }
+
+        protected void organizeChildren() {
+            var childIterator = this.children.GetEnumerator();
+
+            var previousChild = childIterator.Current;
+            previousChild.position = this.position;
+
+            var elementCoordExtremeties = this.position;
+            elementCoordExtremeties.X += childIterator.Current._destinationRect.Width;
+            elementCoordExtremeties.Y += childIterator.Current._destinationRect.Height;
+
+
+            childIterator.MoveNext();
+
+
+            while(childIterator.Current != null){
+
+                //If it is dragable, it might be necessary to drag it outside parent element
+                if (!childIterator.Current._isDragable)
+                {
+                    //If items are to be stacked horizontally
+                    if (childIterator.Current._hStack)
+                    {
+                        childIterator.Current.position.X = previousChild.position.X + previousChild._destinationRect.Width;
+                        childIterator.Current.position.Y = childInsideParentBoundsX(previousChild)? 
+			                previousChild.position.Y: previousChild.position.Y+previousChild._destinationRect.Height;
+                    }
+                    //If items are to be stacked vertically
+                    else if (childIterator.Current._vStack) {
+                        childIterator.Current.position.Y = previousChild.position.Y + previousChild._destinationRect.Height;
+                        childIterator.Current.position.X = childInsideParentBoundsY(previousChild) ?
+                            previousChild.position.X : elementCoordExtremeties.X;
+		            }
+
+                    elementCoordExtremeties.X = childIterator.Current.position.X < elementCoordExtremeties.X ?
+                        elementCoordExtremeties.X : childIterator.Current.position.X;
+
+                    elementCoordExtremeties.Y = childIterator.Current.position.Y < elementCoordExtremeties.Y ?
+                        elementCoordExtremeties.Y : childIterator.Current.position.Y;
+                }
+
+                previousChild = childIterator.Current;
+	        }
+	    }
+
+        private bool childInsideParentBoundsX(BaseElement child) {
+
+            return this.position.X + this._destinationRect.Width < child.position.X + child._destinationRect.Width;
+	    }
+
+        private bool childInsideParentBoundsY(BaseElement child) {
+
+            return this.position.Y + this._destinationRect.Height < child.position.Y + child._destinationRect.Height;
+	    }
     }
 }

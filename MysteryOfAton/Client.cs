@@ -11,8 +11,10 @@ namespace MysteryOfAtonClient
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Menu.Menu _menu;
+        private NewMenu _newMenu;
         private Networking _networking;
         private RenderTarget2D _renderTarget;
+	    private UI.TextElement textElement;
 
         public ResolutionHandler rHandler;
         public const int width = 1920;
@@ -43,6 +45,7 @@ namespace MysteryOfAtonClient
                 , RenderTargetUsage.DiscardContents);
 
             rHandler = new ResolutionHandler(Window.ClientBounds);
+            this._newMenu = new NewMenu(Content);
 
             base.Initialize();
         }
@@ -54,6 +57,8 @@ namespace MysteryOfAtonClient
 
             _menu = new Menu.Menu(Content, Window);
             _menu.LoadMenu();
+            _newMenu.loadMenu(Window, this.rHandler);
+	        this.textElement = new UI.TextElement(null, "This is a test", Content.Load<SpriteFont>("MenuFont"));
 
         }
 
@@ -63,7 +68,7 @@ namespace MysteryOfAtonClient
             if (keyboard.IsKeyDown(Keys.Escape))
                 _menu.LoadMenu();
 
-            if(_menu.isActive)
+            if(1==1)//if(_menu.isActive)
             {
                 switch(_menu.Update(rHandler.transformedMouseState()))
                 {
@@ -79,6 +84,7 @@ namespace MysteryOfAtonClient
                         }
                 }
             }
+            
 
             if (_networking.isConnected) { _networking.checkWithServer(); }
 
@@ -108,6 +114,7 @@ namespace MysteryOfAtonClient
             _spriteBatch.Begin();
             
             _spriteBatch.Draw(_renderTarget, rHandler.renderRectangle, Color.White);
+	    textElement.Draw(_spriteBatch);
 
             _spriteBatch.End();
             
